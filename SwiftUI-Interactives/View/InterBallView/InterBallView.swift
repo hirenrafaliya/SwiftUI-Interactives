@@ -48,40 +48,22 @@ struct InterBallView: View {
             }
             
             
-                        GeometryReader { geometry in
-                            Rectangle()
-                                .fill(Color.clear)
-                                .contentShape(Rectangle())
-                                .onTapGesture { gesture in
-                                    currentPoint = CGPoint(x: gesture.x, y: gesture.y)
-                                    print(currentPoint)
-                                    
-                                    viewModel.updateInterBalls(for: currentPoint)
-            
-//                                    for row in viewModel.interBalls {
-//                                        for ball in row {
-//                                            if abs(ball.point.x - currentPoint.x) < 20 {
-//                                                ball.padding = 5
-//                                                print("\(ball.row) \(ball.col) \(ball.padding)")
-//            
-//                                            }
-//                                            else {
-//                                                ball.padding = 3
-//                                            }
-//                                            if abs(ball.point.y - currentPoint.y) < 20 {
-//                                                ball.padding = 5
-//                                                print("\(ball.row) \(ball.col) \(ball.padding)")
-//            
-//                                            }
-//                                            else {
-//                                                ball.padding = 3
-//                                            }
-//                                        }
-//                                    }
-            
-            
-                                }
-                        }
+            GeometryReader { geometry in
+                Rectangle()
+                    .fill(Color.clear)
+                    .contentShape(Rectangle())
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                currentPoint = value.location
+                                print(currentPoint)
+
+                                viewModel.updateInterBalls(for: currentPoint)
+                            }.onEnded { value in
+                                // TODO
+                            }
+                    )
+            }
         }
         
     }
