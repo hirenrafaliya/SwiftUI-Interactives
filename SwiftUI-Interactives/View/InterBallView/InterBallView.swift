@@ -27,9 +27,11 @@ struct InterBallView: View {
                             GeometryReader { geo in
                                 
                                 ZStack {
-                                    Circle()
-                                        .fill(
-                                            RadialGradient(gradient: Gradient(colors: [.blue, .white]), center: .topTrailing, startRadius: 0, endRadius: 50))
+                                    Text("💦")
+                                        .font(.system(size: col.height))
+//                                    Circle()
+//                                        .fill(
+//                                            RadialGradient(gradient: Gradient(colors: [.blue, .white]), center: .topTrailing, startRadius: 0, endRadius: 50))
                                         .frame(width: col.width, height: col.height)
                                         .rotation3DEffect(
                                             .degrees(col.rotation.0),

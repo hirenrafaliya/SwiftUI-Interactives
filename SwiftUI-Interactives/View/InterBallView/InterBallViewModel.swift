@@ -37,14 +37,14 @@ class InterBallViewModel : ObservableObject {
                 if distance < CLICK_RADIUS {
                     withAnimation {
                         interBalls[item.row][item.col].padding = abs(distance - CLICK_RADIUS) * ACTIVE_PADDING_MULTIPLIER
-                        interBalls[item.row][item.col].rotation = (distance * 1, 1.0, 1.0, 1.0)
-                        interBalls[item.row][item.col].height = abs(distance - CLICK_RADIUS) * 0.25
-                        interBalls[item.row][item.col].width = abs(distance - CLICK_RADIUS) * 0.25
+//                        interBalls[item.row][item.col].rotation = (distance * 1, 1.0, 1.0, 1.0)
+                        interBalls[item.row][item.col].height = abs(distance - CLICK_RADIUS) * 0.35
+                        interBalls[item.row][item.col].width = abs(distance - CLICK_RADIUS) * 0.35
                     }
                 } else {
                     withAnimation {
                         interBalls[item.row][item.col].padding = INACTIVE_PADDING
-                        interBalls[item.row][item.col].rotation = (0, 0.0, 0.0, 0.0)
+//                        interBalls[item.row][item.col].rotation = (0, 0.0, 0.0, 0.0)
                         interBalls[item.row][item.col].height = 25
                         interBalls[item.row][item.col].width = 25
                     }
