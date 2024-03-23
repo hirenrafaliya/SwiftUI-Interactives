@@ -13,9 +13,9 @@ class InterBallViewModel : ObservableObject {
     
     @Published private (set) var interBalls: [[InterBall]] = []
     
-    private let CLICK_RADIUS: CGFloat = 30
-    private let ACTIVE_PADDING : CGFloat = 9
-    private let INACTIVE_PADDING: CGFloat = 2
+    private let CLICK_RADIUS: CGFloat = 60
+    private let ACTIVE_PADDING : CGFloat = 5
+    private let INACTIVE_PADDING: CGFloat = 1
     
     init() {
         interBalls = getInterBalls()

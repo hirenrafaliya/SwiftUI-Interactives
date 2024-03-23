@@ -34,9 +34,9 @@ struct InterBallView: View {
                                             viewModel.updateInterBall(from: geo.frame(in: .global).origin, row: i, col: j)
                                         }
                                     
-                                    Text("\(col.padding.formatted())")
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(.white)
+//                                    Text("\(col.padding.formatted())")
+//                                        .fontWeight(.bold)
+//                                        .foregroundStyle(.white)
                                     
                                 }
                             }
@@ -56,12 +56,10 @@ struct InterBallView: View {
                         DragGesture()
                             .onChanged { value in
                                 currentPoint = value.location
-                                print(currentPoint)
 
                                 viewModel.updateInterBalls(for: currentPoint)
                             }.onEnded { value in
                                 currentPoint = value.location
-                                print(currentPoint)
                                 
                                 viewModel.clearAnimation()
                             }
