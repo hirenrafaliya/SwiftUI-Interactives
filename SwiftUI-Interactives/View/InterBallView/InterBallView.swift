@@ -27,9 +27,13 @@ struct InterBallView: View {
                             GeometryReader { geo in
                                 
                                 ZStack {
-                                    Circle()
+                                    Text("🌈")
                                         .foregroundColor(.blue.opacity(1))
                                         .frame(width: col.width, height: col.height)
+                                        .rotation3DEffect(
+                                            .degrees(col.rotation.0),
+                                            axis: (x: col.rotation.1, y: col.rotation.2, z: col.rotation.3)
+                                        )
                                         .onAppear {
                                             viewModel.updateInterBall(from: geo.frame(in: .global).origin, row: i, col: j)
                                         }

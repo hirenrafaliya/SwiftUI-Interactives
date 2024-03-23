@@ -14,8 +14,8 @@ class InterBallViewModel : ObservableObject {
     @Published private (set) var interBalls: [[InterBall]] = []
     
     private let CLICK_RADIUS: CGFloat = 120
-    private let ACTIVE_PADDING_MULTIPLIER : CGFloat = 0.3
-    private let INACTIVE_PADDING: CGFloat = 1
+    private let ACTIVE_PADDING_MULTIPLIER : CGFloat = 0.035
+    private let INACTIVE_PADDING: CGFloat = 0
     
     init() {
         interBalls = getInterBalls()
@@ -33,13 +33,20 @@ class InterBallViewModel : ObservableObject {
         for row in interBalls {
             for item in row {
                 let distance = distance(from: point, to: item.point)
+                
                 if distance < CLICK_RADIUS {
                     withAnimation {
                         interBalls[item.row][item.col].padding = abs(distance - CLICK_RADIUS) * ACTIVE_PADDING_MULTIPLIER
+                        interBalls[item.row][item.col].rotation = (distance * 1, 1.0, 1.0, 1.0)
+                        interBalls[item.row][item.col].height = distance * 1
+                        interBalls[item.row][item.col].width = distance * 1
                     }
                 } else {
                     withAnimation {
                         interBalls[item.row][item.col].padding = INACTIVE_PADDING
+                        interBalls[item.row][item.col].rotation = (0, 0.0, 0.0, 0.0)
+                        interBalls[item.row][item.col].height = 25
+                        interBalls[item.row][item.col].width = 25
                     }
                 }
             }
