@@ -13,8 +13,8 @@ class InterBallViewModel : ObservableObject {
     
     @Published private (set) var interBalls: [[InterBall]] = []
     
-    private let CLICK_RADIUS: CGFloat = 60
-    private let ACTIVE_PADDING : CGFloat = 5
+    private let CLICK_RADIUS: CGFloat = 120
+    private let ACTIVE_PADDING_MULTIPLIER : CGFloat = 0.3
     private let INACTIVE_PADDING: CGFloat = 1
     
     init() {
@@ -32,11 +32,10 @@ class InterBallViewModel : ObservableObject {
     func updateInterBalls(for point: CGPoint) {
         for row in interBalls {
             for item in row {
-//                print("\(point.x.formatted()) \(item.point.x.formatted()) = \((point.x - item.point.x).formatted())")
-                if abs(point.x - item.point.x) < CLICK_RADIUS && abs(point.y - item.point.y) < CLICK_RADIUS {
-                    print("\(item.row) \(item.col)")
+                let distance = distance(from: point, to: item.point)
+                if distance < CLICK_RADIUS {
                     withAnimation {
-                        interBalls[item.row][item.col].padding = ACTIVE_PADDING
+                        interBalls[item.row][item.col].padding = abs(distance - CLICK_RADIUS) * ACTIVE_PADDING_MULTIPLIER
                     }
                 } else {
                     withAnimation {
@@ -49,7 +48,7 @@ class InterBallViewModel : ObservableObject {
     
     private func getInterBalls() -> [[InterBall]] {
         var iList: [[InterBall]] = []
-        for i in 0..<24 {
+        for i in 0..<25 {
             var jList: [InterBall] = []
             for j in 0..<12 {
                 jList.append(InterBall(row: i, col: j))
@@ -57,5 +56,11 @@ class InterBallViewModel : ObservableObject {
             iList.append(jList)
         }
         return iList
+    }
+    
+    private func distance(from: CGPoint, to: CGPoint) -> CGFloat {
+        let deltaX = to.x - from.x
+        let deltaY = to.y - from.y
+        return sqrt(deltaX * deltaX + deltaY * deltaY)
     }
 }

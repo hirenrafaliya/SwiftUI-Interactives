@@ -29,7 +29,7 @@ struct InterBallView: View {
                                 ZStack {
                                     Circle()
                                         .foregroundColor(.blue.opacity(1))
-                                        .frame(width: 25, height: 25)
+                                        .frame(width: col.width, height: col.height)
                                         .onAppear {
                                             viewModel.updateInterBall(from: geo.frame(in: .global).origin, row: i, col: j)
                                         }
@@ -40,7 +40,7 @@ struct InterBallView: View {
                                     
                                 }
                             }
-                            .frame(width: 25,height: 25)
+                            .frame(width: col.width, height: col.height)
                             .padding(col.padding)
                         }
                     }
