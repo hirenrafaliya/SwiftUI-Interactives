@@ -60,7 +60,10 @@ struct InterBallView: View {
 
                                 viewModel.updateInterBalls(for: currentPoint)
                             }.onEnded { value in
-                                // TODO
+                                currentPoint = value.location
+                                print(currentPoint)
+                                
+                                viewModel.clearAnimation()
                             }
                     )
             }
